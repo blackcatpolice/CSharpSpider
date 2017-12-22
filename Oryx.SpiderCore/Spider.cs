@@ -28,7 +28,7 @@ namespace Oryx.SpiderCore
 
         ~Spider()
         {
-            while (driverQueue.Peek() != null)
+            while (driverQueue != null && driverQueue.Count > 0 && driverQueue.Peek() != null)
             {
                 driverQueue.Dequeue().Quit();
             }
@@ -185,7 +185,7 @@ namespace Oryx.SpiderCore
             catch (Exception exc)
             {
                 Console.WriteLine(exc.Message);
-            } 
+            }
         }
 
         List<QueryParttern> LoadConfig()
