@@ -68,70 +68,43 @@ namespace Oryx.Spider_Demo
         {
             return new QueryParttern
             {
-                CurrentUrl = "http://home.meishichina.com/recipe.html",
-                NextUrlParttern = "#navlist_sub a",
+                CurrentUrl = "http://www.qukuaiwang.com.cn/",
+                NextUrlParttern = ".cr_rk:nth-child(1) ul li a",
                 NextParttern = new QueryParttern
                 {
-                    NextUrlParttern = ".ui_newlist_1 .pic a",
-                    NextParttern = new QueryParttern
-                    {
-                        QueryTarget = new List<Parttern>
-                        {
-                            new Parttern {
-                                 PartternName = "Title",
-                                  Query = new List<string> {
-                                       ".recipe_De_title@text"
-                                  }
-                            },
-                            new Parttern {
-                                PartternName ="Description",
-                                 Query = new List<string>{
-                                     ".block_txt1@text"
-                                 }
-                            },
-                             new Parttern {
-                                  PartternName ="CoverImg",
-                                  Query=new List<string> {
-                                      ".J_photo img@src"
-                                  }
-                             },
-                             new Parttern{
-                                 PartternName ="Shicai",
-                                 Query = new List<string>{
-                                     ".recipeCategory_sub_R:first-of-type li .category_s1@text"
-                                 }
-                             },
-                             new Parttern{
-                                 PartternName="Content",
-                                 Query=new List<string> {
-                                     ".recipeStep@text"
-                                 }
-                             },new Parttern{
-                                 PartternName = "Attention",
-                                 Query =new List<string> {
-                                     ".recipeTip@text"
-                                 }
-                             },
-                             new Parttern{
-                                  PartternName="ChujuAndTags",
-                                  Query = new List<string> {
-                                      ".recipeTip.mt16@text"
-                                  }
-                             },
-                             new Parttern {
-                                 PartternName = "PropertyTags",
-                                 Query=new List<string> {
-                                     ".recipeCategory_sub_R.mt30 li@text"
-                                 }
-                             }
-                        }
-                    },
-                    LoadMore = new ConfigLoadMore
-                    {
-                        Operation = "url",
-                        LoadMoreParttern = ".ui-page-inner"
-                    }
-                }
+                    QueryTarget = new List<Parttern> {
+                           new Parttern {
+                                PartternName ="Title",
+                                Query= new List<string> {
+                                    ".artcleLeft .contents h1@text"
+                                }
+                           },
+                           new Parttern {
+                                PartternName ="Author",
+                                Query = new List<string> {
+                                    ".artcleLeft .contents .data-detail p:first-child@text"
+                                }
+                           },
+                           new Parttern {
+                                PartternName ="Tag",
+                                Query =new List<string>  {
+                                   ".artcleLeft .contents .data-detail p:nth-child(2)@text"
+                               }
+                           },
+                           new Parttern {
+                                PartternName = "CreateTime",
+                                Query = new List<string> {
+                                   ".artcleLeft .contents .data-detail p:nth-child(3)@text"
+                                }
+                           },
+                           new Parttern {
+                                PartternName = "Content",
+                                Query = new List<string> {
+                                   ".artcleLeft .contents .content-art p:not(:nth-last-child(3))@html"
+                                }
+                           }
+                      }
+                },
             };
         }
 

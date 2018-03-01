@@ -14,6 +14,10 @@ namespace Oryx.SpiderCore
 
         static Queue<KeyValuePair<Action<T>, T>> actionQueue = new Queue<KeyValuePair<Action<T>, T>>();
 
+        public delegate void EmptyQueueHandler();
+
+        public event EmptyQueueHandler OnActionQueueEmpty;
+
         static int threadStartNum = 0;
 
         static int threadInter = 3000;
@@ -67,6 +71,11 @@ namespace Oryx.SpiderCore
                     threadStartNum = 0;
                 }
                 isRunning = false;
+
+                if (OnActionQueueEmpty != null)
+                {
+                    OnActionQueueEmpty();
+                }
             }
         }
 

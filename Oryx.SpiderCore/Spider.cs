@@ -20,9 +20,15 @@ namespace Oryx.SpiderCore
 
         public delegate void EveryGetResultHandler(List<SpiderResultDicionary> result);
 
+        public delegate void AllResultHandler(List<List<SpiderResultDicionary>> resultCollection);
+
         public event EveryGetResultHandler OnEveryGetResult;
 
+        public event AllResultHandler OnProcessAll;
+
         ThreadExcutor<QueryParttern> excutor = new ThreadExcutor<QueryParttern>();
+
+        List<List<SpiderResultDicionary>> allResultCollection = new List<List<SpiderResultDicionary>>();
 
         static Queue<PhantomJSDriver> driverQueue = new Queue<PhantomJSDriver>();
 
@@ -37,6 +43,16 @@ namespace Oryx.SpiderCore
         public Spider()
         {
             //queryConfig = LoadConfig();
+
+            excutor.OnActionQueueEmpty += Excutor_OnActionQueueEmpty;
+        }
+
+        private void Excutor_OnActionQueueEmpty()
+        {
+            if (OnProcessAll != null)
+            {
+                OnProcessAll(allResultCollection);
+            }
         }
 
         public void Query(QueryParttern parttern)
@@ -74,6 +90,7 @@ namespace Oryx.SpiderCore
                         QueryResult = resultList
                     });
 
+                    allResultCollection.Add(resultDic);
                     if (OnEveryGetResult != null)
                         OnEveryGetResult(resultDic);
                 }
