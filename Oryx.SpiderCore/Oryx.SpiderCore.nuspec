@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.1</version>
+    <title>$title$</title>
+    <authors>李元外</authors>
+    <owners>李元外</owners>
+    <licenseUrl>https://github.com/blackcatpolice/CSharpSpider</licenseUrl>
+    <projectUrl>https://github.com/blackcatpolice/CSharpSpider</projectUrl>
+    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# 爬虫支持多线程等</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Tag1 Tag2</tags>
+  </metadata>
+</package>
